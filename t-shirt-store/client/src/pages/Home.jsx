@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CommentForm from "../components/CommentForm";
 import StarRating from "../components/StarRating";
+import { API_URL } from '../config';
 import { FaStar } from "react-icons/fa";
 
 const Home = ({ user }) => {
@@ -17,7 +18,7 @@ const Home = ({ user }) => {
   const fetchComments = async () => {
     try {
       const response = await fetch(
-        "https://reimagined-potato-1.onrender.com/api/comments"
+        `${API_URL}/api/comments`
       );
       if (!response.ok) {
         throw new Error("Errore durante il recupero dei commenti");
@@ -35,7 +36,7 @@ const Home = ({ user }) => {
   const addComment = async (newComment) => {
     try {
       const response = await fetch(
-        "https://reimagined-potato-1.onrender.com/api/comments",
+        `${API_URL}/api/comments`,
         {
           method: "POST",
           headers: {

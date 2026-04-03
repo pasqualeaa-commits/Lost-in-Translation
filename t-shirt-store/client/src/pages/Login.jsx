@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import FeedbackPopup from "../components/FeedbackPopup";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { API_URL } from '../config';
 
 const Login = ({ onLogin }) => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -32,7 +33,7 @@ const Login = ({ onLogin }) => {
     setIsPopupVisible(false);
 
     try {
-      const res = await axios.post("https://reimagined-potato-1.onrender.com/api/login", form);
+      const res = await axios.post(`${API_URL}/api/login`, form);
 
       localStorage.setItem('userToken', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));

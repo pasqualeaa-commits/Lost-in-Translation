@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { getNames } from 'country-list';
 import FeedbackPopup from "../components/FeedbackPopup";
+import { API_URL } from '../config';
 
 const Checkout = ({ cartItems, onClearCart, user }) => {
   const [formData, setFormData] = useState({
@@ -134,7 +135,7 @@ const Checkout = ({ cartItems, onClearCart, user }) => {
       const token = localStorage.getItem('userToken');
       const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
 
-      const res = await axios.post("https://reimagined-potato-1.onrender.com/api/orders", orderData, config);
+      const res = await axios.post(`${API_URL}/api/orders`, orderData, config);
 
       setPopupMessage("Ordine confermato con successo! Verrai reindirizzato a breve.");
       setPopupType("success");

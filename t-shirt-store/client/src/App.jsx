@@ -19,6 +19,7 @@ import ReimpostaPassword from './pages/ReimpostaPassword';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import AdminDashboard from './pages/AdminDashboard';
+import { API_URL } from './config';
 
 function App() {
   const [cartItems, setCartItems] = useState(() => {
@@ -43,7 +44,7 @@ function App() {
       if (token && savedUser) {
         try {
           // Verifica che il token sia ancora valido
-          const res = await axios.get('https://reimagined-potato-1.onrender.com/api/me', {
+          const res = await axios.get(`${API_URL}/api/me`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -65,7 +66,7 @@ function App() {
       } else if (token && !savedUser) {
         // Se c'è solo il token ma non i dati utente, recuperali
         try {
-          const res = await axios.get('https://reimagined-potato-1.onrender.com/api/me', {
+          const res = await axios.get(`${API_URL}/api/me`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }

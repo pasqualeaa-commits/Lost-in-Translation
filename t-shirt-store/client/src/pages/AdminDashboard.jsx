@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import FeedbackPopup from "../components/FeedbackPopup";
+import { API_URL } from "../config";
 
 const AdminDashboard = ({ user }) => {
   const [orders, setOrders] = useState([]);
@@ -67,7 +68,7 @@ const AdminDashboard = ({ user }) => {
   const fetchOrders = async () => {
     try {
       const res = await axios.get(
-        "https://reimagined-potato-1.onrender.com/api/admin/orders",
+        `${API_URL}/api/admin/orders`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -82,7 +83,7 @@ const AdminDashboard = ({ user }) => {
   const fetchProducts = async () => {
     try {
       const res = await axios.get(
-        "https://reimagined-potato-1.onrender.com/api/products"
+        `${API_URL}/api/products`
       );
       // Ordina i prodotti per nome in ordine alfabetico
       const sortedProducts = res.data.sort((a, b) =>
@@ -98,7 +99,7 @@ const AdminDashboard = ({ user }) => {
   const fetchUsers = async () => {
     try {
       const res = await axios.get(
-        "https://reimagined-potato-1.onrender.com/api/admin/users",
+        `${API_URL}/api/admin/users`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -118,7 +119,7 @@ const AdminDashboard = ({ user }) => {
     if (window.confirm("Sei sicuro di voler eliminare questo ordine?")) {
       try {
         await axios.delete(
-          `https://reimagined-potato-1.onrender.com/api/admin/orders/${orderId}`,
+          `${API_URL}/api/admin/orders/${orderId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -144,7 +145,7 @@ const AdminDashboard = ({ user }) => {
     if (window.confirm("Sei sicuro di voler eliminare questo prodotto?")) {
       try {
         await axios.delete(
-          `https://reimagined-potato-1.onrender.com/api/products/${productId}`,
+          `${API_URL}/api/products/${productId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -170,7 +171,7 @@ const AdminDashboard = ({ user }) => {
     if (window.confirm("Sei sicuro di voler eliminare questo utente?")) {
       try {
         await axios.delete(
-          `https://reimagined-potato-1.onrender.com/api/admin/users/${userId}`,
+          `${API_URL}/api/admin/users/${userId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -210,7 +211,7 @@ const AdminDashboard = ({ user }) => {
     ) {
       try {
         await axios.put(
-          `https://reimagined-potato-1.onrender.com/api/admin/users/${userId}/set-admin`,
+          `${API_URL}/api/admin/users/${userId}/set-admin`,
           { is_admin: !isAdmin },
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -270,7 +271,7 @@ const AdminDashboard = ({ user }) => {
 
     try {
       const response = await axios.post(
-        "https://reimagined-potato-1.onrender.com/api/products",
+        `${API_URL}/api/products`,
         productData,
         {
           headers: {
@@ -315,7 +316,7 @@ const AdminDashboard = ({ user }) => {
   const handleStatusChange = async (orderId, newStatus) => {
     try {
       await axios.put(
-        `https://reimagined-potato-1.onrender.com/api/admin/orders/${orderId}/status`,
+        `${API_URL}/api/admin/orders/${orderId}/status`,
         { status: newStatus },
         {
           headers: { Authorization: `Bearer ${token}` },

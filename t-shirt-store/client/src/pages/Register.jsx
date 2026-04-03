@@ -5,6 +5,7 @@ import { getNames } from 'country-list';
 import { useNavigate, useLocation } from "react-router-dom";
 import FeedbackPopup from "../components/FeedbackPopup";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { API_URL } from '../config';
 
 const Register = ({ onLogin }) => {
   const [form, setForm] = useState({ 
@@ -60,8 +61,8 @@ const Register = ({ onLogin }) => {
     setIsPopupVisible(false);
 
     try {
-      await axios.post("https://reimagined-potato-1.onrender.com/api/register", form);
-      const res = await axios.post("https://reimagined-potato-1.onrender.com/api/login", {
+      await axios.post(`${API_URL}/api/register`, form);
+      const res = await axios.post(`${API_URL}/api/login`, {
         email: form.email,
         password: form.password
       });

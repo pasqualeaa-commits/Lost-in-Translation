@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import FeedbackPopup from "../components/FeedbackPopup"; // Importa il componente popup
+import { API_URL } from '../config';
 
 const RecuperoPassword = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ const RecuperoPassword = () => {
     setIsPopupVisible(false);
 
     try {
-      await axios.post("https://reimagined-potato-1.onrender.com/api/forgot-password", { email });
+      await axios.post(`${API_URL}/api/forgot-password`, { email });
       setPopupMessage("Se l'email è registrata, riceverai un link per reimpostare la password.");
       setPopupType("success");
       setIsPopupVisible(true);

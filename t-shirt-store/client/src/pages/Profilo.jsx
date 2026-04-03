@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getNames } from "country-list";
+import { API_URL } from '../config';
 
 const allCountries = getNames().sort((a, b) => a.localeCompare(b));
 const italyIndex = allCountries.findIndex((country) => country === "Italy");
@@ -61,7 +62,7 @@ const Profilo = ({ user, onLogout, onUpdateUser }) => {
       }
 
       const res = await axios.put(
-        `https://reimagined-potato-1.onrender.com/api/users/${user.id}`,
+        `${API_URL}/api/users/${user.id}`,
         form,
         {
           headers: {

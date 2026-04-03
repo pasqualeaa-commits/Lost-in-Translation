@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import FeedbackPopup from "../components/FeedbackPopup";
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Importa le icone di React Icons
+import { API_URL } from '../config';
 
 const ReimpostaPassword = () => {
   const { token } = useParams();
@@ -27,7 +28,7 @@ const ReimpostaPassword = () => {
     setIsPopupVisible(false);
 
     try {
-      await axios.post("https://reimagined-potato-1.onrender.com/api/password-reset", { token, newPassword });
+      await axios.post(`${API_URL}/api/password-reset`, { token, newPassword });
       setPopupMessage("Password reimpostata con successo! Ora puoi accedere.");
       setPopupType("success");
       setIsPopupVisible(true);

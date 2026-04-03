@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from '../config';
 
 const ProductDetail = ({ onAddToCart }) => {
   const { productId } = useParams();
@@ -9,7 +10,7 @@ const ProductDetail = ({ onAddToCart }) => {
   const [selectedSize, setSelectedSize] = useState("S");
 
   useEffect(() => {
-    axios.get(`https://reimagined-potato-1.onrender.com/api/products/${productId}`)
+    axios.get(`${API_URL}/api/products/${productId}`)
       .then(res => {
         setProduct(res.data);
         const langs = typeof res.data.languages === "string"
