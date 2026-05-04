@@ -1,0 +1,22 @@
+.vscode/launch.json
+.vs/
+*.db
+*.sqlite
+
+# Dipendenze
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Visual Studio (quelli che vedi nello screenshot)
+.vs/
+server/.vs/
+*.db
+*.sqlite
+*.vsdx
+*.wsuo
+
+# Environment e Build
+.env
+dist/
+build/
